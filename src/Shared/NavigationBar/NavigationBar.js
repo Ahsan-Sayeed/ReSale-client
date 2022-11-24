@@ -15,6 +15,45 @@ const NavigationBar = () => {
         alert("something went wrong");
       });
   };
+
+  const menuItems = [
+    <li>
+    <NavLink to="/">Home</NavLink>
+  </li>,
+  <li tabIndex={0}>
+    <NavLink to="/blog">Blogs</NavLink>
+  </li>,
+  <li>
+    <NavLink
+      to="/dashboard"
+      className={`justify-between ${!(user && user.uid) && "hidden"}`}
+    >
+      Dashboard
+    </NavLink>
+  </li>,
+  // <li>
+  //   <NavLink
+  //     to="/review"
+  //     className={`${!(user && user.uid) && "hidden"}`}
+  //   >
+  //     My Reviews
+  //   </NavLink>
+  // </li>,
+  <>
+    {user === null ? (
+      <li>
+        <NavLink to="/login">Login</NavLink>
+      </li>
+    ) : (
+      <li>
+        <button className="btn btn-outline" onClick={handleLogOut}>
+          LogOut
+        </button>
+      </li>
+    )}
+  </>
+  ]
+
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -24,42 +63,7 @@ const NavigationBar = () => {
       </div>
       <div className="flex-none hidden md:block">
         <ul className="menu menu-horizontal p-0">
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li tabIndex={0}>
-            <NavLink to="/blog">Blogs</NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/service"
-              className={`justify-between ${!(user && user.uid) && "hidden"}`}
-            >
-              Add Service
-              <span className="animate-bounce indicator-item badge badge-secondary">
-                99+
-              </span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/review"
-              className={`${!(user && user.uid) && "hidden"}`}
-            >
-              My Reviews
-            </NavLink>
-          </li>
-          {user === null ? (
-            <li>
-              <NavLink to="/login">Login</NavLink>
-            </li>
-          ) : (
-            <li>
-              <button className="btn btn-outline" onClick={handleLogOut}>
-                LogOut
-              </button>
-            </li>
-          )}
+          {menuItems}
         </ul>
       </div>
       {/* ===Menu bar== */}
@@ -86,37 +90,7 @@ const NavigationBar = () => {
           tabIndex={0}
           className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
         >
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/blog">blog</Link>
-          </li>
-          <li>
-            <Link
-              to="/service"
-              className={`justify-between ${!(user && user.uid) && "hidden"}`}
-            >
-              Add Service
-              <span className="indicator-item badge badge-secondary">99+</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/review" className={`${!(user && user.uid) && "hidden"}`}>
-              My Reviews
-            </Link>
-          </li>
-          {user === null ? (
-            <li>
-              <NavLink to="/login"> Login</NavLink>
-            </li>
-          ) : (
-            <li>
-              <button className="btn btn-outline" onClick={handleLogOut}>
-                LogOut
-              </button>
-            </li>
-          )}
+           {menuItems}
         </ul>
       </div>
     </div>

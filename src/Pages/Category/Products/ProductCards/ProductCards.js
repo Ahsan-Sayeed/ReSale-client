@@ -9,7 +9,7 @@ const ProductCards = () => {
             <h2 className="card-title">Shoes!</h2>
             <p>If a dog chews shoes whose shoes does he choose?</p>
             <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <label htmlFor="my-modal-3" className="btn btn-primary">open modal</label>
             </div>
         </div>
         </div>

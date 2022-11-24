@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from '../../../Shared/Modal/Modal';
 import ProductCards from './ProductCards/ProductCards';
 
 const Products = () => {
@@ -16,6 +17,7 @@ const Products = () => {
                 <ProductCards></ProductCards>
             </div>
 	      </div>
+          <Modal/>
        </section>
      </div>
     );

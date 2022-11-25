@@ -1,7 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {useQuery} from '@tanstack/react-query';
+import { DELETE, GET, PUT } from '../../../../Utilities/RequestObjects';
+import CustomModal from '../../../../Shared/CustomModal/CustomModal';
 
 const AllSellers = () => {
-    return (
+  const [Delete,setDelete] = useState('');
+  const {data,refetch,isLoading} = useQuery(
+    {
+       queryKey: ['buyers'], 
+       queryFn:()=> GET('/admin/Seller')
+    })
+
+    console.log(data?.data);
+
+    if(isLoading){
+      return <h1>Loading...</h1>
+    }
+
+    const handleDelete = (v)=>{
+      if(v){
+        DELETE(`/admin/seller/${Delete._id}`)
+        .then(res=>{
+          if(res?.data?.acknowledged){
+            refetch();
+          }
+          else{
+            alert('Something went wrong.');
+          }
+        })
+        .catch(err=>{
+          console.log(err);
+        })
+      }
+      setDelete('');
+    }
+
+    const handleUpdate = (id) =>{
+      PUT(`/admin/seller/${id}`,{})
+      .then(res=>{
+        if(res.data.acknowledged&&res.data.modifiedCount>0){
+          refetch();
+        }
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+    }
+
+return (
 <div className="overflow-x-auto w-full">
   <table className="table w-full">
     {/* <!-- head --> */}
@@ -9,149 +55,69 @@ const AllSellers = () => {
       <tr>
         <th>
           <label>
-            <input type="checkbox" className="checkbox" />
+            <input type="checkbox" className="checkbox" style={{visibility:'hidden'}}/>
           </label>
         </th>
         <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
+        <th>Contact</th>
+        <th>Action</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      {/* <!-- row 1 --> */}
-      <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        <td>
-          <div className="flex items-center space-x-3">
-            <div className="avatar">
-              <div className="mask mask-squircle w-12 h-12">
-                <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+      {/* <!-- row --> */}
+      {
+        data?.data?.map((value,index)=>{
+          return<tr key={value._id}>
+          <th>
+            <label>
+              {index+1}
+            </label>
+          </th>
+          <td>
+            <div className="flex items-center space-x-3">
+              <div className="avatar">
+                <div className="mask mask-squircle w-12 h-12">
+                  <img src={"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"} alt="Avatar Tailwind CSS Component" />
+                </div>
+              </div>
+              <div>
+                <div className="font-bold">{value?.name?value?.name:'N/A'}</div>
+                <div className="text-sm opacity-50">{'N/A'}</div>
               </div>
             </div>
-            <div>
-              <div className="font-bold">Hart Hagerty</div>
-              <div className="text-sm opacity-50">United States</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          Zemlak, Daniel and Leannon
-          <br/>
-          <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-        </td>
-        <td>Purple</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">details</button>
-        </th>
-      </tr>
-      {/* <!-- row 2 --> */}
-      <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        <td>
-          <div className="flex items-center space-x-3">
-            <div className="avatar">
-              <div className="mask mask-squircle w-12 h-12">
-                <img src="/tailwind-css-component-profile-3@56w.png" alt="Avatar Tailwind CSS Component" />
-              </div>
-            </div>
-            <div>
-              <div className="font-bold">Brice Swyre</div>
-              <div className="text-sm opacity-50">China</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          Carroll Group
-          <br/>
-          <span className="badge badge-ghost badge-sm">Tax Accountant</span>
-        </td>
-        <td>Red</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">details</button>
-        </th>
-      </tr>
-      {/* <!-- row 3 --> */}
-      <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        <td>
-          <div className="flex items-center space-x-3">
-            <div className="avatar">
-              <div className="mask mask-squircle w-12 h-12">
-                <img src="/tailwind-css-component-profile-4@56w.png" alt="Avatar Tailwind CSS Component" />
-              </div>
-            </div>
-            <div>
-              <div className="font-bold">Marjy Ferencz</div>
-              <div className="text-sm opacity-50">Russia</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          Rowe-Schoen
-          <br/>
-          <span className="badge badge-ghost badge-sm">Office Assistant I</span>
-        </td>
-        <td>Crimson</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">details</button>
-        </th>
-      </tr>
-      {/* <!-- row 4 --> */}
-      <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        <td>
-          <div className="flex items-center space-x-3">
-            <div className="avatar">
-              <div className="mask mask-squircle w-12 h-12">
-                <img src="/tailwind-css-component-profile-5@56w.png" alt="Avatar Tailwind CSS Component" />
-              </div>
-            </div>
-            <div>
-              <div className="font-bold">Yancy Tear</div>
-              <div className="text-sm opacity-50">Brazil</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          Wyman-Ledner
-          <br/>
-          <span className="badge badge-ghost badge-sm">Community Outreach Specialist</span>
-        </td>
-        <td>Indigo</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">details</button>
-        </th>
-      </tr>
+          </td>
+          <td>
+            {value?.email?value?.email:'N/A'}
+            <br/>
+            <span className="badge badge-ghost badge-sm">{value?.phoneNumber?value?.phoneNumber:'N/A'}</span>
+          </td>
+          <td>
+          <button className={`btn ${!value?.verified&&'btn-success'} btn-xs`} 
+          onClick={()=>handleUpdate(value._id)} 
+          disabled={value?.verified}>
+           {value?.verified&& <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Blue_check.svg" 
+              alt="" style={{height:'20px'}}
+              className='mr-2 border border-blue-200 rounded-xl p-1'
+              />
+           }
+            {value?.verified?<span className='text-blue-300'>Verified</span>:'Unverified'}
+          </button>
+          </td>
+          <th>
+            <button className="btn btn-info btn-xs mx-5">details</button>
+            <label htmlFor="my-modal" className='btn btn-error text-white btn-xs' onClick={()=>setDelete(value)}>Delete</label>
+          </th>
+        </tr>
+        })
+      }
     </tbody>
-    {/* <!-- foot --> */}
-    <tfoot>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-        <th></th>
-      </tr>
-    </tfoot>
-    
   </table>
+  <CustomModal title={`Are You Sure You Want To Delete ${Delete.name}`} 
+    bodyText={`If you delete ${Delete.name} your data will be no longer available, and it can't be recover any more.`}
+    success={{btn:'Delete',fun:handleDelete}}
+    decline={{btn:'Decline',fun:handleDelete}}
+  />
 </div>
     );
 };

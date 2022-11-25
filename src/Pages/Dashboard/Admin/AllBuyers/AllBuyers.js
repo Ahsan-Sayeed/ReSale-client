@@ -1,7 +1,8 @@
 import React from 'react';
 
 const AllBuyers = () => {
-    return (
+
+return (
 <div className="overflow-x-auto w-full">
   <table className="table w-full">
     {/* <!-- head --> */}

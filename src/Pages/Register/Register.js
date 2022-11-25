@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/Context";
 import { useForm } from "react-hook-form";
+import { GET, POST } from "../../Utilities/RequestObjects";
 
 const Register = () => {
 	const {createUser,updateUser} = useContext(AuthContext);
@@ -10,7 +11,7 @@ const Register = () => {
 	
 	const onSubmit = data =>{
 		console.log(data,errors.message);
-		reset();
+
 
 	const obj = {displayName:data.fullName||"Anynomus"} 
     createUser(data.email,data.password)
@@ -20,8 +21,18 @@ const Register = () => {
         .then(()=>{
         //   SetToken(user.email);
           alert("account created succesfully");
-		  console.log(user);
-        //   navigate(changer,{replace:true});
+		  POST('/createaccount',{name:user.displayName,email:user.email,uid:user.uid,role:data.optionSelect,verified:false}).then(res=>{
+				if(res.data.acknowledged){
+					reset();
+					navigate('/',{replace:true});
+				}
+				else{
+					alert("Something went wrong please try again later");
+				}
+			})
+			.catch(err=>{
+				console.log(err);
+			})
         })
         .catch(err=>{
           console.log(err);

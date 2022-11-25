@@ -4,7 +4,9 @@ import { AuthContext } from "../../Context/Context";
 import RemoveToken from "../../Utilities/RemoveToken";
 
 const NavigationBar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user,userServer, logOut } = useContext(AuthContext);
+  // console.log(userServer);
+  
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -31,14 +33,6 @@ const NavigationBar = () => {
       Dashboard
     </NavLink>
   </li>,
-  // <li>
-  //   <NavLink
-  //     to="/review"
-  //     className={`${!(user && user.uid) && "hidden"}`}
-  //   >
-  //     My Reviews
-  //   </NavLink>
-  // </li>,
   <>
     {user === null ? (
       <li>

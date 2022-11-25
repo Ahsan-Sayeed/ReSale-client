@@ -5,7 +5,7 @@ import { AuthContext } from '../../Context/Context';
 const Dashboard = () => {
   const {user,userServer} = useContext(AuthContext);
   let menuItems;
-  console.log(userServer)
+  // console.log(userServer)
     const buyers = [
         <li><NavLink to="/dashboard/myorders">My Orders</NavLink></li>,
     ]

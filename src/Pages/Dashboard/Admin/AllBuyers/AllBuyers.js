@@ -1,6 +1,26 @@
 import React from 'react';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+import { GET } from '../../../../Utilities/RequestObjects';
+
 
 const AllBuyers = () => {
+  const {data,refetch,isLoading} = useQuery(
+    {
+       queryKey: ['buyers'], 
+       queryFn:()=> GET('/admin/Buyer')
+    })
+    
+    console.log(data?.data);
+
+    if(isLoading){
+      return <h1>Loading...</h1>
+    }
 
 return (
 <div className="overflow-x-auto w-full">

@@ -10,7 +10,7 @@ const AddAProduct = () => {
 
 	const onSubmit = data => {
 		const {condition,description,location,orginalPrice,phoneNumber,picture,productName,
-			   reSalePrice,sellerName,yearsOfPurches,yearsOfUse} = data;
+			   reSalePrice,sellerName,yearsOfPurches,yearsOfUse,category} = data;
 			
 			//image hosting
 			const formData = new FormData();
@@ -24,7 +24,7 @@ const AddAProduct = () => {
 			.then(res=>{
 				if(res.status===200){
 					POST('/seller/products',{picture:res.data.display_url,condition,description,location,orginalPrice,phoneNumber,productName,
-						reSalePrice,sellerName,yearsOfPurches,yearsOfUse,advertise:false,
+						reSalePrice,sellerName,yearsOfPurches,yearsOfUse,category,advertise:false,sold:false,
 						sellerName:userServer.name,sellerEmail:userServer.email,sellerUID:userServer.uid,role:userServer.role})
 						.then(res=>{
 							if(res.data.acknowledged){
@@ -63,6 +63,14 @@ const AddAProduct = () => {
 					className="input input-bordered w-full max-w-xs"
 					{...register("productName", { required: true })}
 					/>
+					<br />
+					<label htmlFor="productCategory" className="text-sm">Products Category</label><br />
+					<select id='condition' className="select select-bordered w-full max-w-xs" 
+					{...register("category", { required: true })}>
+						<option selected>Bed Room</option>
+						<option>Kitchen</option>
+						<option>Dinig Room</option>
+					</select>
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="orginalPrice" className="text-sm">Orginal Price</label><br />

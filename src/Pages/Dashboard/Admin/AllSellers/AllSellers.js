@@ -101,7 +101,7 @@ return (
               className='mr-2 border border-blue-200 rounded-xl p-1'
               />
            }
-            {value?.verified?<span className='text-blue-300'>Verified</span>:'Unverified'}
+            {value?.verified?<span className='text-blue-300 hidden md:block'>Verified</span>:'Unverified'}
           </button>
           </td>
           <th>

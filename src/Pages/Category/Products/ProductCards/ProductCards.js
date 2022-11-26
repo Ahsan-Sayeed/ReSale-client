@@ -17,7 +17,7 @@ const ProductCards = ({value,setBooking,setModalData}) => {
             <div className="card-actions justify-end">
             {
                 value.booked?<button className='btn' disabled>Booked</button>:<label htmlFor="my-modal-3" className="btn btn-primary" onClick={()=>{
-                setBooking({id:value._id,itemName:value.productName,price:value.reSalePrice,category:value.category})
+                setBooking({id:value._id,picture:value.picture,itemName:value.productName,price:value.reSalePrice,category:value.category})
                 setModalData(true)
                 }}>book Now</label>
             }

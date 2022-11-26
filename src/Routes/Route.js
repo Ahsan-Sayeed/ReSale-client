@@ -12,6 +12,7 @@ import MyOrders from '../Pages/Dashboard/Buyers/MyOrders/MyOrders';
 import AddAProduct from '../Pages/Dashboard/Sellers/AddAProduct/AddAProduct';
 import MyBuyers from '../Pages/Dashboard/Sellers/MyBuyers/MyBuyers';
 import MyProducts from '../Pages/Dashboard/Sellers/MyProducts/MyProducts';
+import Payment from '../Shared/Payment/Payment';
 
 const Route = createBrowserRouter([
     {
@@ -75,6 +76,10 @@ const Route = createBrowserRouter([
                     element:<AllBuyers/>
                 },
             ]
+        },
+        {
+            path:'/payment',
+            element:<Payment/>
         }
     ]
     }

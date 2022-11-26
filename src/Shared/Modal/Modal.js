@@ -13,7 +13,7 @@ const Modal = ({booking,setModalData,onSubmiModal}) => {
     const userUID = user.uid;
     const phoneNumber = data.target.phoneNumber.value;
     const meetingLocation = data.target.meetingLocation.value;
-    const bodyData = {itemName,price,username,email,userUID,phoneNumber,meetingLocation,category:booking.category,productID:booking.id};
+    const bodyData = {itemName,picture:booking.picture,price,username,email,userUID,phoneNumber,meetingLocation,category:booking.category,productID:booking.id,payed:false};
     setModalData(false)
     onSubmiModal(bodyData);
   }

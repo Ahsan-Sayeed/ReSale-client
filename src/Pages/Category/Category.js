@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Products from './Products/Products';
 import {useQuery} from '@tanstack/react-query';
 import { GET } from '../../Utilities/RequestObjects';
 import { useParams } from 'react-router-dom';
+import { AuthContext } from '../../Context/Context';
 
 const Category = () => {
+    const {user} = useContext(AuthContext)
     const params = useParams();
     const {data,isLoading,refetch} = useQuery({ 
-        queryKey: ['products'], 
-        queryFn: ()=>GET(`/products/${params.id}`) 
+        queryKey: ['products',user?.uid], 
+        queryFn: ()=>GET(`/products/${params.id}?uid=${user?.uid}`) 
     })
-
     
 return (
 <section>

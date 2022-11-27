@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const OrderedCard = ({value}) => {
     const navigate = useNavigate();
-
+  // console.log(value)
   return (
     <div className="glass">
       <figure>
@@ -14,7 +14,7 @@ const OrderedCard = ({value}) => {
         <p>{value?.price?value?.price:'N/A'}</p>
         <div className="card-actions justify-end">
             {
-              value?.payed?<button className="btn btn-info">Payed</button>:<button className="btn btn-primary" onClick={()=>navigate('/payment')}>Pay</button>
+              value?.payed?<button className="btn btn-info">Payed</button>:<button className="btn btn-primary" onClick={()=>navigate('/payment',{state:{price:value?.price,productID:value.productID}})}>Pay</button>
             }
         </div>
       </div>

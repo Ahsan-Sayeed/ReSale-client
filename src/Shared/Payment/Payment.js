@@ -26,7 +26,7 @@ const Payment = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: `bearer ${localStorage.getItem("access_token")}`,
+        authorization: `${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify({ price }),
     })

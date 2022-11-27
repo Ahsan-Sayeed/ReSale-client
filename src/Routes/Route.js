@@ -15,8 +15,6 @@ import MyProducts from '../Pages/Dashboard/Sellers/MyProducts/MyProducts';
 import Payment from '../Shared/Payment/Payment';
 import Reports from '../Pages/Dashboard/Admin/Reports/Reports';
 import ReportedItem from '../Pages/Dashboard/Admin/ReportedItem/ReportedItem';
-import Loading from '../Shared/Loading/Loading';
-import LoadingRound from '../Shared/LoadingRound/LoadingRound';
 import ErrorPage from '../Shared/ErrorPage/ErrorPage';
 import PrivateRoute from './PrivateRoute';
 import Blog from '../Pages/Blog/Blog';

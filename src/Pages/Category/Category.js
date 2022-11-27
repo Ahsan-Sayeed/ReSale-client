@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { GET, POST } from "../../Utilities/RequestObjects";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../Context/Context";
+import LoadingRound from "../../Shared/LoadingRound/LoadingRound";
+import Loading from "../../Shared/Loading/Loading";
 
 const Category = () => {
   const { user } = useContext(AuthContext);
@@ -29,6 +31,10 @@ const Category = () => {
     .catch(err=>{
         console.log(err);
     })
+  }
+
+  if(isLoading){
+    return <Loading/>
   }
 
   return (

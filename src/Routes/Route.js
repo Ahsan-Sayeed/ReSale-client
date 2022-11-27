@@ -13,6 +13,13 @@ import AddAProduct from '../Pages/Dashboard/Sellers/AddAProduct/AddAProduct';
 import MyBuyers from '../Pages/Dashboard/Sellers/MyBuyers/MyBuyers';
 import MyProducts from '../Pages/Dashboard/Sellers/MyProducts/MyProducts';
 import Payment from '../Shared/Payment/Payment';
+import Reports from '../Pages/Dashboard/Admin/Reports/Reports';
+import ReportedItem from '../Pages/Dashboard/Admin/ReportedItem/ReportedItem';
+import Loading from '../Shared/Loading/Loading';
+import LoadingRound from '../Shared/LoadingRound/LoadingRound';
+import ErrorPage from '../Shared/ErrorPage/ErrorPage';
+import PrivateRoute from './PrivateRoute';
+import Blog from '../Pages/Blog/Blog';
 
 const Route = createBrowserRouter([
     {
@@ -25,7 +32,7 @@ const Route = createBrowserRouter([
         },
         {
             path:'/category/:id',
-            element: <Category/>
+            element:<PrivateRoute><Category/></PrivateRoute>
         },
         {
             path:'/login',
@@ -36,8 +43,12 @@ const Route = createBrowserRouter([
             element:<Register/>
         },
         {
+            path:'/blog',
+            element:<Blog/>
+        },
+        {
             path:'/dashboard',
-            element: <Dashboard/>,
+            element: <PrivateRoute><Dashboard/></PrivateRoute>,
             children:[
                 {
                     path:'/dashboard/allbuyers',
@@ -75,13 +86,25 @@ const Route = createBrowserRouter([
                     path:'/dashboard/allbuyers',
                     element:<AllBuyers/>
                 },
+                {
+                    path:'/dashboard/report',
+                    element:<Reports/>
+                },
+                {
+                    path:'/dashboard/reporteditem',
+                    element:<ReportedItem/>
+                }
             ]
         },
         {
             path:'/payment',
-            element:<Payment/>
+            element:<PrivateRoute><Payment/></PrivateRoute>
         }
     ]
+    },
+    {
+        path:'*',
+        element: <ErrorPage/>
     }
 
 ])

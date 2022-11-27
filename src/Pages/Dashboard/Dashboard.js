@@ -16,7 +16,10 @@ const Dashboard = () => {
     ]
     const admin = [
         <li><NavLink to="/dashboard/allsellers">All Sellers</NavLink></li>,
-        <li><NavLink to="/dashboard/allbuyers">All Buyers</NavLink></li>
+        <li><NavLink to="/dashboard/allbuyers">All Buyers</NavLink></li>,
+        <li><NavLink to="/dashboard/report">Reports</NavLink></li>,
+        <li><NavLink to="/dashboard/reporteditem">Reported Items</NavLink></li>
+        
     ]
 
     if(userServer?.role==="Buyer"){

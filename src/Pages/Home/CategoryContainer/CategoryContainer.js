@@ -1,19 +1,18 @@
 import React from "react";
 import Card from "./Card/Card";
 import {GET} from '../../../Utilities/RequestObjects';
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+import {useQuery} from '@tanstack/react-query'
+import LoadingRound from "../../../Shared/LoadingRound/LoadingRound";
 
 const CategoryContainer = () => {
   const {data,isLoading} = useQuery({
     queryKey:['category'],
     queryFn:() => GET('/category')
   }) 
+
+  if(isLoading){
+    return <LoadingRound/>
+  }
 
   return (
     <div className="flex items-center justify-center flex-col p-10">

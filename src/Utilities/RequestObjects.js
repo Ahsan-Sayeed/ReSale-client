@@ -2,7 +2,7 @@ import axios from "axios";
 
 const config = {
     headers:{
-        authorization : `Bearer ${localStorage.getItem("access_token")}`
+        authorization : localStorage.getItem("accessToken")
     }
   };
   

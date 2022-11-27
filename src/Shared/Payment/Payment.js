@@ -17,7 +17,7 @@ const stripePromise = loadStripe(
 const Payment = () => {
   const [clientSecret, setClientSecret] = useState("");
   const location = useLocation();
-  const {price,productID} = location.state;
+  const {price,productID} = location?.state;
   const {user} = useContext(AuthContext);
 
   useEffect(() => {

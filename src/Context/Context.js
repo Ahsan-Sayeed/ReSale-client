@@ -16,8 +16,8 @@ const Context = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth,(user)=>{
             setLoading(false);
             setUser(user);
-            if(user.uid){
-                GET(`/users/${user.uid}`)
+            if(user?.uid){
+                GET(`/users/${user?.uid}`)
                 .then(res=>{
                     setUserServer(res.data);
                 })

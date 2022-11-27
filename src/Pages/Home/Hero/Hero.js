@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import LoadingRound from "../../../Shared/LoadingRound/LoadingRound";
 import CategoryContainer from "../CategoryContainer/CategoryContainer";
 import Carousel from "./Carousel/Carousel";
 
 const Hero = () => {
+
   return (
     <section>
       <div>

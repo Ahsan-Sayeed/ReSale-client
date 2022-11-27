@@ -7,7 +7,7 @@ const AllSellers = () => {
   const [Delete,setDelete] = useState('');
   const {data,refetch,isLoading} = useQuery(
     {
-       queryKey: ['buyers'], 
+       queryKey: ['Seller'], 
        queryFn:()=> GET('/admin/Seller')
     })
 

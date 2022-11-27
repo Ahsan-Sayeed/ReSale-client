@@ -2,22 +2,34 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/Context";
 import { useForm } from "react-hook-form";
+import { GET, POST } from "../../Utilities/RequestObjects";
+
 
 const Login = () => {
 	const {signInWithEmail,signInWithGoogle,signInWitGit} = useContext(AuthContext);
 	const [wrong,setWrong] = useState('');
 	const navigate = useNavigate();
 	const { register,reset, handleSubmit, formState: { errors } } = useForm();
+	const location = useLocation();
+	const To = location?.state?.from||'/';
 
 	const onSubmit = data =>{
-		console.log(data);
-		reset();
+	reset();
+//
 	
 	signInWithEmail(data.email,data.password)
     .then(({user})=>{
       if(user&&user.uid){
-        ///
-		console.log(user);
+		////	Start				
+		GET(`/jwt?email=${user.email}`)
+		.then(res=>{
+			localStorage.setItem("accessToken",`Bearer ${res.data.accessToken}`);
+		})
+		.catch(err=>{
+			console.log(err);
+		})
+		/// End
+		navigate(To,{replace:true});
       }
       else{
         alert("please try again later");
@@ -31,15 +43,40 @@ const Login = () => {
         alert("something went wrong please try agein later");
       }
     })
-
 	}
 
+	
 
 	const handleSignInGoogle = () =>{
 		signInWithGoogle()
 		.then(({user})=>{
 		  if(user&&user.uid){
-			console.log(user);
+			//start
+			//save to database start
+				POST('/createaccount',{name:user.displayName,email:user.email,uid:user.uid,role:"Buyer",verified:false})
+				.then(res=>{
+					if(res.data.acknowledged){
+////	Start				
+						GET(`/jwt?email=${user.email}`)
+						.then(res=>{
+							localStorage.setItem("accessToken",`Bearer ${res.data.accessToken}`);
+						})
+						.catch(err=>{
+							console.log(err);
+						})
+
+	/// End
+						reset();
+						navigate(To,{replace:true});
+					}
+					else{
+						alert("Something went wrong please try again later");
+					}
+				})
+				.catch(err=>{
+					console.log(err);
+				})
+				///end	
 		  }
 		  else{
 			alert("please try again later");

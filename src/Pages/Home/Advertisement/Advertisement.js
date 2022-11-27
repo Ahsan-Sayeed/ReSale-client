@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GET } from '../../../Utilities/RequestObjects';
 import {useQuery} from '@tanstack/react-query'
+import LoadingRound from '../../../Shared/LoadingRound/LoadingRound';
 
 const Advertisement = () => {
 const { isLoading, isError, data, error } = useQuery({
@@ -8,7 +9,11 @@ const { isLoading, isError, data, error } = useQuery({
 	queryFn:()=> GET('/ads')
 })
 
-if(data?.data.length>0)
+if(isLoading){
+	return <LoadingRound/>
+}
+
+if(data?.data.filter(v=>v.sold!==true).length>0)
     return (
 <section className="py-6 dark:bg-gray-800">
 <h1 className=" flex flex-col mx-auto text-3xl w-5/6 my-5">For Sale</h1>

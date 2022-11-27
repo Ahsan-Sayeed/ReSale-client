@@ -21,7 +21,8 @@ const Register = () => {
         .then(()=>{
         //   SetToken(user.email);
           alert("account created succesfully");
-		  POST('/createaccount',{name:user.displayName,email:user.email,uid:user.uid,role:data.optionSelect,verified:false}).then(res=>{
+		  POST('/createaccount',{name:user.displayName,email:user.email,uid:user.uid,role:data.optionSelect,verified:false})
+		  .then(res=>{
 				if(res.data.acknowledged){
 					reset();
 					navigate('/',{replace:true});

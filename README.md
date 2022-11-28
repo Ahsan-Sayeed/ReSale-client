@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+##Features:
+    <ul>
+        <li>It's fully responsive old product selling enable website</li>
+        <li>You can create an seller account or by default buyer account</li>
+        <li>If you are a seller you can post your product as well as advertise them in the home page.</li>
+        <li>If you are buyer you can order a product and also pay for it through stripe.</li>
+        <li>When you'll pay for a product the seller would be informed, without any delay.</li>
+        <li>A user can also report to admin for a bad product and admin has that access to delete that product.</li>
+        <li>Admin also can delete a seller or buyer and also verify a seller.</li>
+        <li>Admin login email:sayeed@gmail.com pass:123456</li>
+    </ul>
+
 ## Available Scripts
 
 In the project directory, you can run:

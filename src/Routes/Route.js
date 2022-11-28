@@ -18,6 +18,7 @@ import ReportedItem from '../Pages/Dashboard/Admin/ReportedItem/ReportedItem';
 import ErrorPage from '../Shared/ErrorPage/ErrorPage';
 import PrivateRoute from './PrivateRoute';
 import Blog from '../Pages/Blog/Blog';
+import DashboardHome from '../Pages/Dashboard/DashboardHome/DashboardHome';
 
 const Route = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ const Route = createBrowserRouter([
             path:'/dashboard',
             element: <PrivateRoute><Dashboard/></PrivateRoute>,
             children:[
+                {
+                    path:'/dashboard',
+                    element: <DashboardHome/>
+                },
                 {
                     path:'/dashboard/allbuyers',
                     element:<AllBuyers/>

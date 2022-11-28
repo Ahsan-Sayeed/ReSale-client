@@ -30,7 +30,7 @@ const Context = ({children}) => {
         return ()=>{
             unsubscribe();
         };
-    },[]);
+    },[loading,user,userServer]);
 
     const signInWithGoogle = () => {
         setLoading(true);

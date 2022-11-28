@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/Context";
-import RemoveToken from "../../Utilities/RemoveToken";
-import { GET } from "../../Utilities/RequestObjects";
+import toast, { Toaster } from 'react-hot-toast';
 
 const NavigationBar = () => {
   const { user,userServer, logOut } = useContext(AuthContext);
@@ -11,10 +10,10 @@ const NavigationBar = () => {
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        alert("succesfully logged out");
+        toast.success("succesfully logged out");
         ////	Start				
 							localStorage.setItem("accessToken",'');
-              navigate('/',{replace:true});
+              navigate('/login',{replace:true});
         /// End
       })
       .catch((err) => {
@@ -24,15 +23,15 @@ const NavigationBar = () => {
 
   const menuItems = [
     <li>
-    <NavLink to="/">Home</NavLink>
+    <NavLink to="/" className='rounded-xl'>Home</NavLink>
   </li>,
   <li tabIndex={0}>
-    <NavLink to="/blog">Blogs</NavLink>
+    <NavLink to="/blog" className='rounded-xl'>Blogs</NavLink>
   </li>,
   <li>
     <NavLink
-      to="/dashboard"
-      className={`justify-between ${!(user && user.uid) && "hidden"}`}
+      to="/dashboard/myorders"
+      className={`justify-between ${!(user && user.uid) && "hidden"} rounded-xl`}
     >
       Dashboard
     </NavLink>
@@ -40,11 +39,11 @@ const NavigationBar = () => {
   <>
     {user === null ? (
       <li>
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/login"  className='rounded-xl'>Login</NavLink>
       </li>
     ) : (
       <li>
-        <button className="btn btn-outline" onClick={handleLogOut}>
+        <button className="btn btn-outline rounded-xl" onClick={handleLogOut}>
           LogOut
         </button>
       </li>
@@ -56,7 +55,7 @@ const NavigationBar = () => {
     <div className="navbar bg-base-100">
       <div className="flex-1">
         <Link to="/" className="btn btn-ghost normal-case text-xl">
-          DaysiUI
+          Aurora
         </Link>
       </div>
       <div className="flex-none hidden md:block">
@@ -91,6 +90,7 @@ const NavigationBar = () => {
            {menuItems}
         </ul>
       </div>
+      <Toaster />
     </div>
   );
 };

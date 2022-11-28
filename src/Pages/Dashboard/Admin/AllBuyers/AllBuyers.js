@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {useQuery} from '@tanstack/react-query';
 import { DELETE, GET } from '../../../../Utilities/RequestObjects';
 import CustomModal from '../../../../Shared/CustomModal/CustomModal';
+import LoadingRound from '../../../../Shared/LoadingRound/LoadingRound';
 
 const AllBuyers = () => {
   const [Delete,setDelete] = useState('');
@@ -12,7 +13,7 @@ const AllBuyers = () => {
     })
 
     if(isLoading){
-      return <h1>Loading...</h1>
+      return <LoadingRound/>
     }
 
     const handleDelete = (v)=>{
@@ -35,6 +36,7 @@ const AllBuyers = () => {
 
 return (
 <div className="overflow-x-auto w-full">
+  <h1 className='text-2xl mb-5 font-bold'>Buyers</h1>
   <table className="table w-full">
     {/* <!-- head --> */}
     <thead>

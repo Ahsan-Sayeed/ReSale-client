@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Card = ({title,id}) => {
     const navigate = useNavigate();
     return (
-        <div className="card bg-base-100 shadow-xl" onClick={()=>{navigate(`/category/${id}`)}}>
+        <div className="card text-black glass shadow-xl" style={{backgroundColor:'#3498DB'}} onClick={()=>{navigate(`/category/${id}`)}}>
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
           <p>If a dog chews shoes whose shoes does he choose?</p>

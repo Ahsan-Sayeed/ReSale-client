@@ -13,7 +13,7 @@ const MyOrders = () => {
 
 
     return (
-<section className="py-6 dark:bg-gray-800">
+<section className="py-6">
 	<div className="container flex flex-col justify-center p-4 mx-auto">
 		<div className="grid grid-cols-1 gap-4 lg:grid-cols-4 sm:grid-cols-2">
 			

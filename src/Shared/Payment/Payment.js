@@ -9,6 +9,7 @@ import {
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/Context";
 import { POST, PUT } from "../../Utilities/RequestObjects";
+import toast, { Toaster } from 'react-hot-toast';
 
 const stripePromise = loadStripe(
   "pk_test_51M6vzDFctdEKfoSzIxc2TwjwZdKP5fzcUWdbOcSNUFsN3unu9UlBALx2A6ReLFc6rkBmjiJs2xO0Wj6Gvv5ISWJo00nmRz2EZy"
@@ -22,7 +23,7 @@ const Payment = () => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://re-sale.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -148,7 +149,7 @@ const CheckoutForm = ({ clientSecret, productID }) => {
       POST('/payment',paymentData)
       .then(res=>{
         if(res.data.acknowledged){
-            alert('payment success');
+            toast.success('payment success');
             navigate('/');
         }
       })
@@ -193,6 +194,7 @@ const CheckoutForm = ({ clientSecret, productID }) => {
             (method && <span className="text-success">{method}</span>)}
         </p>
       }
+            <Toaster />
     </form>
   );
 };

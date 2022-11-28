@@ -3,18 +3,18 @@ import { useNavigate } from "react-router-dom";
 
 const OrderedCard = ({value}) => {
     const navigate = useNavigate();
-  // console.log(value)
+
   return (
-    <div className="glass">
+    <div className="glass rounded">
       <figure>
-        <img src={value?.picture?value?.picture:"https://placeimg.com/400/225/arch"} alt="car!" />
+        <img src={value?.picture?value?.picture:"https://placeimg.com/400/225/arch"} className='w-full' style={{height:'200px'}} alt="car!" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{value?.itemName?value?.itemName:'N/A'}</h2>
-        <p>{value?.price?value?.price:'N/A'}</p>
+        <p>${value?.price?value?.price:'N/A'}</p>
         <div className="card-actions justify-end">
             {
-              value?.payed?<button className="btn btn-info">Payed</button>:<button className="btn btn-primary" onClick={()=>navigate('/payment',{state:{price:value?.price,productID:value.productID}})}>Pay</button>
+              value?.payed?<button className="btn btn-error">Payed</button>:<button className="btn btn-success" onClick={()=>navigate('/payment',{state:{price:value?.price,productID:value.productID}})}>Pay</button>
             }
         </div>
       </div>

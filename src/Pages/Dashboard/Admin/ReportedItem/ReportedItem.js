@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { DELETE, GET } from '../../../../Utilities/RequestObjects';
+import toast, { Toaster } from 'react-hot-toast';
 
 const ReportedItem = () => {
     const {data,isLoading,refetch} = useQuery({ 
@@ -13,7 +14,7 @@ const ReportedItem = () => {
         .then(res=>{
             if(res.status===200){
                 refetch();
-                alert('Product deleted');
+                toast.success('Product deleted succesfully');
             }
         })
         .catch(err=>{
@@ -59,6 +60,7 @@ const ReportedItem = () => {
         }
 				
 	</div>
+    <Toaster />
 </div>
     );
 };

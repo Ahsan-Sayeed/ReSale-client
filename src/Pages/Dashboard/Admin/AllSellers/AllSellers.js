@@ -49,6 +49,7 @@ const AllSellers = () => {
 
 return (
 <div className="overflow-x-auto w-full">
+<h1 className='text-2xl mb-5 font-bold'>Sellers</h1>
   <table className="table w-full">
     {/* <!-- head --> */}
     <thead>

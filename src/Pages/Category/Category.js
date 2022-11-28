@@ -15,6 +15,7 @@ const Category = () => {
     queryFn: () => GET(`/products/${params.id}?uid=${user?.uid}`),
   });
   // console.log((new Date()).toDateString(),);
+  // console.log(data);
   const handleReportSubmit = (e) =>{
     e.preventDefault();
     POST('/report',{report:e.target.report.value,
@@ -39,9 +40,9 @@ const Category = () => {
 
   return (
     <section>
-      <div className="dark:bg-violet-400">
+      <div className="" style={{background:"url('https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?w=1060&t=st=1669648274~exp=1669648874~hmac=dd32248ae2b5d8041decece90e484f590bc493f44cdebe6866a70b9295ccc027')"}}>
         <div className="container flex flex-col px-4 py-16 pb-24 mx-auto text-center lg:pb-56 md:py-32 md:px-10 lg:px-32 dark:text-gray-900">
-          <h1 className="text-2xl text-left -mt-10 mb-10 text-white">
+          <h1 className="text-xl font-bold text-left -mt-10 mb-10 text-black">
             Home{">"}
             {data?.data[0].category}
           </h1>
@@ -50,7 +51,7 @@ const Category = () => {
           </h1>
         </div>
       </div>
-      <div className=" w-full lg:w-5/6 mx-auto mb-12 -mt-20 rounded-lg shadow-md lg:-mt-40 dark:bg-gray-500">
+      <div className=" w-full lg:w-5/6 mx-auto mb-12 -mt-20 rounded-lg shadow-md lg:-mt-40 glass">
         <Products data={data} refetch={refetch}></Products>
       </div>
       <div>

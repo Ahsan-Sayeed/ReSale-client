@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/Context";
 import { useForm } from "react-hook-form";
 import { GET, POST } from "../../Utilities/RequestObjects";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Register = () => {
 	const {createUser,updateUser} = useContext(AuthContext);
@@ -20,12 +21,23 @@ const Register = () => {
         updateUser(obj)
         .then(()=>{
         //   SetToken(user.email);
-          alert("account created succesfully");
+		toast("You've created an account succesfully.");
 		  POST('/createaccount',{name:user.displayName,email:user.email,uid:user.uid,role:data.optionSelect,verified:false})
 		  .then(res=>{
 				if(res.data.acknowledged){
-					reset();
-					navigate('/',{replace:true});
+					////	Start				
+					GET(`/jwt?email=${user.email}`)
+					.then(res=>{
+						localStorage.setItem("accessToken",`Bearer ${res.data.accessToken}`);
+						reset();
+						// console.log(localStorage.getItem("accessToken"))
+						navigate('/',{replace:true});
+					})
+					.catch(err=>{
+						console.log(err);
+					})
+					/// End
+					
 				}
 				else{
 					alert("Something went wrong please try again later");
@@ -46,7 +58,7 @@ const Register = () => {
     .catch(err=>{
       // error message here
       if(err.message==='Firebase: Error (auth/email-already-in-use).'){
-        alert("Account already in use");
+        toast.error("Account already in use");
       }
     })
 
@@ -85,6 +97,7 @@ const Register = () => {
 		<a rel="noopener noreferrer" href="/login" className="underline dark:text-gray-100">Sign In</a>
 	</p>
 </div>
+<Toaster />
         </div>
     );
 };

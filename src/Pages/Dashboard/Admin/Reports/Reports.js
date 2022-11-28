@@ -13,7 +13,7 @@ const Reports = () => {
     }
     return (
 <div className="container p-2 mx-auto sm:p-4 dark:text-gray-100">
-	<h2 className="mb-4 text-2xl font-semibold leading-tight">Emails</h2>
+	<h2 className="mb-4 text-2xl font-semibold leading-tight">Reports</h2>
 	<div className="flex flex-col overflow-x-auto text-xs">
 		<div className="flex text-left dark:bg-gray-700">
 			<div className="flex items-center justify-center w-8 px-2 py-3 sm:p-3">

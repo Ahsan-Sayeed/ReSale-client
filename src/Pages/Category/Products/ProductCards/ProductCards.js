@@ -7,6 +7,8 @@ const ProductCards = ({value,setBooking,setModalData}) => {
     const [isVerified,setVerified] = useState('');
     const [show,setShow] = useState(true);
     const {user} = useContext(AuthContext);
+    
+    // console.log(new Date(value.Time).toLocaleTimeString())
 
     useEffect(()=>{
         GET(`/isverified/${value.sellerUID}`)
@@ -33,17 +35,17 @@ const ProductCards = ({value,setBooking,setModalData}) => {
     }
 
     return (
-        <div className="object-cover w-full dark:bg-gray-500 aspect-square">
-        <div className="card card-compact bg-base-100 shadow-xl">
-        <figure><img src={value.picture?value.picture:"https://placeimg.com/400/225/arch"} alt="Shoes" /></figure>
-        <div className="card-body">
+        <div className="object-cover w-full aspect-square">
+        <div className="card card-compact glass shadow-xl">
+        <figure><img src={value.picture?value.picture:"https://placeimg.com/400/225/arch"} alt="Shoes" className='w-full' style={{height:'200px'}}/></figure>
+        <div className="card-body text-black">
             <h2 className="card-title">{value.productName?value.productName:'N/A'}</h2>
             <p>location: {value.location?value.location:'N/A'}</p>
             <p>Re-Sale Price: {value.reSalePrice?value.reSalePrice:'N/A'}</p>
             <p>Orginal Price: {value.orginalPrice?value.orginalPrice:'N/A'}</p>
             <p>Years Of Use: {value.yearsOfUse?value.yearsOfUse:'N/A'}</p>
-            <p>seller Name: {value.sellerName?value.sellerName:'N/A'} {isVerified&&<span className='text-blue-400 mx-2'>&#10003;</span>}</p>
-            <p>Posted: {value.Time?date.toISOString():'N/A'}</p>
+            <p>Seller Name: {value.sellerName?value.sellerName:'N/A'}{isVerified&&<span className='text-white font-bold mx-2 rounded-xl px-1 bg-blue-400'>&#10003;</span>}</p>
+            <p>Posted on {value.Time?new Date(value.Time).toLocaleTimeString():'N/A'}</p>
             <div className="card-actions justify-end">
             {
                 value.booked?<button className='btn' disabled>Booked</button>:<label htmlFor="my-modal-3" className="btn btn-primary" onClick={()=>{

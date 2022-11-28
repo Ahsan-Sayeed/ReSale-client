@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../Context/Context';
 import Loading from '../../Shared/Loading/Loading';
@@ -7,6 +7,7 @@ const Dashboard = () => {
   const {user,userServer} = useContext(AuthContext);
   let menuItems;
   // console.log(userServer)
+
     const buyers = [
         <li><NavLink to="/dashboard/myorders">My Orders</NavLink></li>,
     ]
@@ -22,8 +23,9 @@ const Dashboard = () => {
         <li><NavLink to="/dashboard/allbuyers">All Buyers</NavLink></li>,
         <li><NavLink to="/dashboard/report">Reports</NavLink></li>,
         <li><NavLink to="/dashboard/reporteditem">Reported Items</NavLink></li>
-        
     ]
+
+
 
     if(userServer?.role==="Buyer"){
       menuItems = buyers;
@@ -49,7 +51,7 @@ const Dashboard = () => {
   </div> 
   <div className="drawer-side">
     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
-    <ul className="menu p-4 w-80 bg-base-100 text-base-content border">
+    <ul className="menu p-4 w-80 bg-base-100 text-base-content">
       {/* <!-- Sidebar content here --> */}
         {menuItems}
     </ul>

@@ -16,7 +16,7 @@ const CategoryContainer = () => {
 
   return (
     <div className="flex items-center justify-center flex-col p-10">
-      <h1 className="text-3xl my-5">Categories</h1>
+      <h1 className="text-3xl my-5 font-bold underline">Categories</h1>
       
      <section className="py-6">
 	  <div className="container flex flex-col justify-center p-4 mx-auto">

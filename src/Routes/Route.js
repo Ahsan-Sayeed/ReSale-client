@@ -82,14 +82,6 @@ const Route = createBrowserRouter([
                     element:<AllBuyers/>
                 },
                 {
-                    path:'/dashboard/allbuyers',
-                    element:<AllBuyers/>
-                },
-                {
-                    path:'/dashboard/allbuyers',
-                    element:<AllBuyers/>
-                },
-                {
                     path:'/dashboard/report',
                     element:<Reports/>
                 },

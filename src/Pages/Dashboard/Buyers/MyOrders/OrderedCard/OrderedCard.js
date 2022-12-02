@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const OrderedCard = ({value}) => {
+const OrderedCard = ({value,isLoading}) => {
     const navigate = useNavigate();
-
+  if(!isLoading){
   return (
     <div className="glass rounded">
       <figure>
@@ -21,5 +21,6 @@ const OrderedCard = ({value}) => {
     </div>
   );
 };
+}
 
 export default OrderedCard;

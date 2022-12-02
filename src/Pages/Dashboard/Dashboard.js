@@ -4,7 +4,7 @@ import { AuthContext } from '../../Context/Context';
 import Loading from '../../Shared/Loading/Loading';
 
 const Dashboard = () => {
-  const {user,userServer} = useContext(AuthContext);
+  const {user,userServer,loading} = useContext(AuthContext);
   let menuItems;
   // console.log(userServer)
 
@@ -26,38 +26,44 @@ const Dashboard = () => {
     ]
 
 
-
-    if(userServer?.role==="Buyer"){
-      menuItems = buyers;
-    }
-    else if(userServer?.role==="Seller"){
-      menuItems = sellers;
-    }
-    else if(userServer?.role==="Admin"){
-      menuItems = admin;
+    if(!loading){
+      if(userServer?.role==="Buyer"){
+        menuItems = buyers;
+      }
+      else if(userServer?.role==="Seller"){
+        menuItems = sellers;
+      }
+      else if(userServer?.role==="Admin"){
+        menuItems = admin;
+      }
     }
     else{
       menuItems = <Loading/>
     }
 
     return (
-<div className="drawer drawer-mobile">
-  <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-  <div className="drawer-content flex flex-col items-center">
-    {/* page content */}
-     <Outlet></Outlet>
-    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden absolute top-20 -left-2" style={{zIndex:100}}>❯</label>
-  
-  </div> 
-  <div className="drawer-side">
-    <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
-    <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-      {/* <!-- Sidebar content here --> */}
-        {menuItems}
-    </ul>
-  
-  </div>
-</div>
+      <>
+      {
+     !loading&&    
+    <div className="drawer drawer-mobile">
+      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col items-center">
+        {/* page content */}
+        <Outlet></Outlet>
+        <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden absolute top-20 -left-2" style={{zIndex:100}}>❯</label>
+      
+      </div> 
+      <div className="drawer-side">
+        <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
+        <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+          {/* <!-- Sidebar content here --> */}
+            {menuItems}
+        </ul>
+      
+      </div>
+    </div>
+  }
+  </>
     );
 };
 

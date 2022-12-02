@@ -94,7 +94,7 @@ const Register = () => {
 			<button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400" type="submit">Sign Up</button>
 	</form> 
 	<p className="text-xs text-center sm:px-6 dark:text-gray-400">Already have an account?
-		<a rel="noopener noreferrer" href="/login" className="underline dark:text-gray-100">Sign In</a>
+		<Link to="/login" className="underline dark:text-gray-100">Sign In</Link>
 	</p>
 </div>
 <Toaster />
